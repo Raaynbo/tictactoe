@@ -42,8 +42,8 @@ const gameboard = (function () {
 
 	const canPlay = () => {
 		let empty = false;
-		board.forEach(row) => {
-			empty = row.includes("");
+		board.forEach((row) => {
+			empty = empty || row.includes("");
 		});
 		return empty;
 	};
@@ -54,8 +54,6 @@ const gameboard = (function () {
 const gameMode = (function () {
 	let p1, p2 = "";
 	let board = gameboard;
-	const p1_history = [];
-	const p2_history = [];
 	const setPlayers = (player1, player2) => {
 		p1 = player1;
 		p2 = player2;
@@ -69,9 +67,12 @@ const gameMode = (function () {
 		while (!isDone){
 			const x = window.prompt(`${player.playerName}: x pos`);
 			const y = window.prompt(`${player.playerName}: y pos`);
-			console.log("x " + x);
-			console.log("w");
-			isDone = player.playTurn(board, x,y);
+			const regexp = /[0-2]/;
+			if (x.match(regexp) !== null && y.match(regexp) !== null ){
+				isDone = player.playTurn(board, x,y);
+			}else{
+				console.log("please play in the bound [0-1-2]");
+			}
 	
 		}
 		console.log(player.playerMoves);
