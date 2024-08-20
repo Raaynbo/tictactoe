@@ -1,4 +1,74 @@
 * {
 	margin: 0;
 	padding: 0;
+	list-style: none;
+}
+
+
+body {
+	display: grid;
+	width: 100vw;
+	height: 100vh;
+	grid-template: 1fr 1fr 1fr 1fr 1fr / 0.5fr 1fr 1fr 1fr 1fr;
+	grid-template-areas:
+		"sidebar main main main main"
+		"sidebar main main main main"
+		"sidebar main main main main"
+		"sidebar main main main main"
+		"sidebar main main main main"
+	;
+}
+
+#main {
+	grid-area: main;
+	background-color: white;
+}
+
+#sidebar {
+	grid-area: sidebar;
+	background-color: grey;
+	height: 100%;
+}
+
+.menu_container {
+	width: 100%;
+	height: 100%;
+}
+
+.menu_item {
+	background-color: lightgrey;
+	width: 90%;
+	padding: 2rem 0.7rem;
+}
+
+.action {
+	height: 60%;
+	padding-top: 10rem;
+}
+
+.ng_menu {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.ng_player_pfp_container {
+	background-color: blue;
+	color: white;
+	height: 35%;
+	width: 100%;
+}
+
+.ng_player_info_container {
+	height: 32.5%;
+	width: 100%;
+	background-color: cyan;
+}
+
+
+.row {
+	display: flex;
+	gap: 1.6rem;
+	align-items: center;
+	justify-content: center;
 }

@@ -160,7 +160,7 @@ const player1 = player("sil", "x");
 const player2 = player("sisl", "o");
 
 gameMode.setPlayers(player1, player2);
-gameMode.startGame();
+//gameMode.startGame();
 
 //player1.playTurn(gameboard, 0, 1);
 
