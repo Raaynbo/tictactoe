@@ -37,7 +37,6 @@ body {
 
 .menu_item {
 	background-color: lightgrey;
-	width: 90%;
 	padding: 2rem 0.7rem;
 }
 
@@ -53,10 +52,14 @@ body {
 }
 
 .ng_player_pfp_container {
-	background-color: blue;
-	color: white;
 	height: 35%;
 	width: 100%;
+}
+
+.ng_player_pfp {
+	width: 400px;
+	height: 400px;
+	display: flex;
 }
 
 .ng_player_info_container {
@@ -65,10 +68,30 @@ body {
 	background-color: cyan;
 }
 
+#ng_player1_pfp_display,
+#ng_player2_pfp_display {
+	height: 400px;
+	width: 400px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 4rem;
+	border: 1px solid black;
+
+}
+
+
+
+.leftarrow,
+.rightarrow {
+	align-self: center;
+	position: relative;
+
+}
 
 .row {
 	display: flex;
 	gap: 1.6rem;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-evenly;
 }

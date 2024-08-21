@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="asset/style.css">
 	<script type="text/javascript" src="asset/main.js" defer></script>
+	<script type="text/javascript" src="asset/utils.js" defer></script>
 	<title>Document</title>
 </head>
 
@@ -23,11 +24,24 @@
 	</div>
 	<div class="main" id="main">
 		<div class="ng_menu">
-			<div class="ng_player_pfp_container">ajsdkad</div>
+			<div class="ng_player_pfp_container row">
+				<div class="ng_player_pfp" id="ng_player1_pfp_selector">
+					<span class="leftarrow">
+						←</span>
+					<img src="asset/pfp/pfp1.png" alt="pfp icon" id="ng_player1_pfp_display">
+					<span class="rightarrow">→</span>
+				</div>
+				<div class="ng_player_pfp" id="ng_player2_pfp_selector">
+					<span class="leftarrow">
+						←</span>
+					<img src="asset/pfp/pfp2.png" alt="pfp icon" id="ng_player2_pfp_display">
+				</div>
+			</div>
 			<div class="ng_player_info_container">
 				<div class="row">
-					<div class="ng_player_info">joueur</div>
-					<div class="ng_player_info">joueur</div>
+					<div class="ng_player_info"> </div>
+					<div class="ng_player_info">
+					</div>
 				</div>
 				<div class="row">
 					<div class="ng_player_info">MARKER</div>
