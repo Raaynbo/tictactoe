@@ -9,23 +9,27 @@ body {
 	display: grid;
 	width: 100vw;
 	height: 100vh;
-	grid-template: 1fr 1fr 1fr 1fr 1fr / 0.5fr 1fr 1fr 1fr 1fr;
-	grid-template-areas:
-		"sidebar main main main main"
-		"sidebar main main main main"
-		"sidebar main main main main"
-		"sidebar main main main main"
-		"sidebar main main main main"
+	grid-template-columns: 8% auto;
+	transition: 300ms;
+	/*grid-template-areas:
+	//	"sidebar main main main main"
+	//	"sidebar main main main main"
+	//	"sidebar main main main main"
+	//	"sidebar main main main main"
+	//	"sidebar main main main main"
+	*/
 	;
 }
 
+body:has(.sidebar:hover) {
+	grid-template-columns: 20% auto;
+}
+
 #main {
-	grid-area: main;
 	background-color: white;
 }
 
 #sidebar {
-	grid-area: sidebar;
 	background-color: grey;
 	height: 100%;
 }
@@ -57,7 +61,8 @@ body {
 }
 
 .ng_player_pfp {
-	width: 400px;
+	justify-content: center;
+	width: 100%;
 	height: 400px;
 	display: flex;
 }
@@ -65,7 +70,64 @@ body {
 .ng_player_info_container {
 	height: 32.5%;
 	width: 100%;
-	background-color: cyan;
+}
+
+.ng_player_info {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 1rem;
+}
+
+.ng_player_name {
+	color: black;
+	margin-left: 0.5rem;
+}
+
+
+
+.ng_player_name input {
+	border-radius: 3rem;
+	font-size: 2rem;
+	padding-left: 0.6rem;
+	font-style: italic;
+}
+
+.marker_info {
+	font-weight: 700;
+	font-size: 2.3rem;
+}
+
+#marker_container1 {
+	height: 100%;
+	margin-top: 0.4rem;
+}
+
+.marker_selector {
+	width: 90%;
+	min-width: 400px;
+	max-width: 1200px;
+	height: 100%;
+	border: 5px solid red;
+	background-color: red;
+}
+
+.marker_selector_inside {
+	background-color: white;
+	width: 90%;
+	min-width: 400px;
+	height: 100%;
+	display: grid;
+	grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
+}
+
+.write_icon {
+	height: 40px;
+	width: 40px;
+}
+
+.marker_icon {
+	height: fit-content;
 }
 
 #ng_player1_pfp_display,
@@ -86,12 +148,22 @@ body {
 .rightarrow {
 	align-self: center;
 	position: relative;
+	color: grey;
+	font-size: 2rem;
+	cursor: pointer;
+}
 
+.leftarrow {
+	left: 2rem;
+}
+
+.rightarrow {
+	right: 2rem;
 }
 
 .row {
 	display: flex;
 	gap: 1.6rem;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: center;
 }
