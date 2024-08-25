@@ -28,13 +28,13 @@
 				<div class="ng_player_pfp" id="ng_player1_pfp_selector">
 					<span class="leftarrow">
 						←</span>
-					<img src="asset/pfp/pfp1.png" alt="pfp icon" id="ng_player1_pfp_display">
+					<img src="asset/icons/pfp/pfp1.png" alt="pfp icon" id="ng_player1_pfp_display">
 					<span class="rightarrow">→</span>
 				</div>
 				<div class="ng_player_pfp" id="ng_player2_pfp_selector">
 					<span class="leftarrow">
 						←</span>
-					<img src="asset/pfp/pfp2.png" alt="pfp icon" id="ng_player2_pfp_display">
+					<img src="asset/icons/pfp/pfp2.png" alt="pfp icon" id="ng_player2_pfp_display">
 					<span class="rightarrow">→</span>
 				</div>
 			</div>
@@ -48,7 +48,8 @@
 									d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
 							</svg>
 						</span>
-						<div class="ng_player_name"><input type="text" placeholder="NAME"></div>
+						<div class="ng_player_name"><input type="text" placeholder="NAME"
+								id="p1name"></div>
 					</div>
 					<div class="ng_player_info">
 						<span class="write_icon">
@@ -58,7 +59,8 @@
 									d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
 							</svg>
 						</span>
-						<div class="ng_player_name"><input type="text" placeholder="NAME"></div>
+						<div class="ng_player_name"><input type="text" placeholder="NAME"
+								id="p2name"></div>
 
 					</div>
 				</div>
@@ -68,20 +70,27 @@
 				<div class="row" id="marker_container1">
 					<div class="ng_player_info marker_selector">
 						<div class="marker_selector_inside">
-							<div class="marker_icon">
-							</div>
-							<div class="marker_icon">4</div>
-							<div class="marker_icon">3</div>
-							<div class="marker_icon">5</div>
-							<div class="marker_icon">6</div>
-							<div class="marker_icon">7</div>
-							<div class="marker_icon">9</div>
-							<div class="marker_icon">8</div>
+							<div class="marker_icon"></div>
+							<div class="marker_icon"></div>
+							<div class="marker_icon"></div>
+							<div class="marker_icon"></div>
+							<div class="marker_icon"></div>
+							<div class="marker_icon"></div>
+							<div class="marker_icon"></div>
+							<div class="marker_icon"></div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div></div>
+			<div class="ng_launch_game row">
+				<div class="ft_selector">
+					<span class="ft_selector_text">First To</span>
+					<span class="ft_button selected">1</span>
+					<span class="ft_button">3</span>
+					<span class="ft_button">5</span>
+				</div>
+				<div class="ng_start_game" onclick="startGame()">PLAY</div>
+			</div>
 		</div>
 	</div>
 </body>
