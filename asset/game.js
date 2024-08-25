@@ -1,9 +1,10 @@
 console.log("tictactoe");
 
 
-const player = function (name, symbol) {
+const player = function (name, symbol, marker) {
 	const playerName = name;
 	let playerSymbol = symbol;
+	const playerMarker = marker;
 
 	const playerMoves = [];
 	const setSymbol = (newSymbol) => playerSymbol = newSymbol;
@@ -101,9 +102,14 @@ const gameboard = (function () {
 const gameMode = (function () {
 	let p1, p2 = "";
 	let board = gameboard;
+	let ft = 1;
 	const setPlayers = (player1, player2) => {
 		p1 = player1;
 		p2 = player2;
+	};
+	
+	const setMode = (mode) => {
+		ft = mode;
 	};
 
 	const playersTurn = (player) => {
@@ -152,14 +158,11 @@ const gameMode = (function () {
 		}
 		console.log(`${nextPlayer.playerName} won !`);
 	};
-	return {p1, p2, board, setPlayers,playersTurn, startGame};
+	return {p1, p2, ft, board, setPlayers, setMode, playersTurn, startGame};
 })();
 
 
-const player1 = player("sil", "x");
-const player2 = player("sisl", "o");
 
-gameMode.setPlayers(player1, player2);
 //gameMode.startGame();
 
 //player1.playTurn(gameboard, 0, 1);
