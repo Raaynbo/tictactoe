@@ -3,12 +3,17 @@ console.log("main file");
 p1name = document.querySelector("#p1name");
 p2name = document.querySelector("#p2name");
 
-function startGame() {
+const boardui = document.querySelector(".board");
+const ngmenu = document.querySelector(".ng_menu");
+
+let nextPlayer;
+
+async function startGame() {
 	
 	p1marker = document.querySelector("#p1marker");
 	p2marker = document.querySelector("#p2marker");
 	const ft_mode = document.querySelector(".ft_button.selected")
-	if (p1name.value ==="" || p2name.value === "" ){
+	if (p1name.value ==="" || p2name.value === "" ){  
 		//trigger error notif
 		console.log("names are missing ")
 		return false;
@@ -21,9 +26,50 @@ function startGame() {
 	}
 	let player1 = player(p1name.value, "1", p1marker.src);
 	let player2 = player(p2name.value, "2", p2marker.src);
-	console.log(player1);
-	console.log(player2);
 	gameMode.setPlayers(player1, player2);
 	gameMode.setMode(ft_mode);
-	gameMode.startGame();
+	ngmenu.style.display = "none";
+	boardui.style.display = "block";
+	let container = document.createElement('div');
+	container.classList.add("board_container"); 
+	boardui.appendChild(container);
+
+	createGrid(3, "950", container, false);
+
+	let nextPlayer = player1;
+
+
+	let board = gameboard;
+	if (!board.canPlay()){
+		console.log("draw")	
+		return false;
+	}
+		let isWinning = false;
+	while ( isWinning === false){
+		await Promise.resolve(myPromiseGenerator());
+		let isDone;
+		[isDone, isWinning] = nextPlayer.playTurn(board, x, y);
+		if (!isDone){
+			console.log("this cell is already taken")
+		}
+		else{
+			let cellid = `cell-${x}-${y}`;
+			drawMarker(nextPlayer.playerMarker, cellid)
+			nextPlayer == player1 ? nextPlayer = player2 : nextPlayer = player1;
+		}
+		if (isWinning){
+			console.log("we have a winner"); 
+		}
+		
+		
+	}
 }
+
+	
+
+
+
+//
+//
+//Draw a board dynamically, each cell is a DIV, with event listener
+//

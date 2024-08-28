@@ -22,7 +22,7 @@ const player = function (name, symbol, marker) {
 		return [true, false];
 		};
 
-	return {playerName, playerSymbol, playerMoves, setSymbol, getSymbol, playTurn}
+	return {playerName, playerSymbol,playerMarker,playerMoves, setSymbol, getSymbol, playTurn}
 };
 
 const gameboard = (function () {
@@ -37,10 +37,10 @@ const gameboard = (function () {
 			["0,2", "1,1", "2,0"]];
 
 	const setBoard = (x,y,symbol) => {
-			if (board[y][x] !== ""){
+			if (board[x][y] !== ""){
 			return false;
 			}
-			board[y][x] = symbol;
+			board[x][y] = symbol;
 			return true;
 		};
 	const resetBoard = () => board.fill(["","",""]);
@@ -74,13 +74,13 @@ const gameboard = (function () {
 				});
 				if (playerWinningState === 2){
 					console.log("we have a winner here");
+					console.log(pWinCond)
 					return true;
 				}
 				if (j === history[j].length-1){
 					pWinCond = wincase;
 					playerWinningState = 0;
 				}
-				console.log(`playerwinningState = ${playerWinningState}`)
 
 
 			}
@@ -101,6 +101,7 @@ const gameboard = (function () {
 
 const gameMode = (function () {
 	let p1, p2 = "";
+	let nextPlayer = "";
 	let board = gameboard;
 	let ft = 1;
 	const setPlayers = (player1, player2) => {
@@ -108,6 +109,7 @@ const gameMode = (function () {
 		p2 = player2;
 	};
 	
+	const setNext = (player) => nextPlayer = player;
 	const setMode = (mode) => {
 		ft = mode;
 	};
@@ -135,30 +137,31 @@ const gameMode = (function () {
 		//return result
 	};
 	
-	const startGame = () => {
-		let nextPlayer = p1;	
+	const startGame = async () => {
 		
-		while (board.canPlay() ){
-		
-			if (playersTurn(nextPlayer)){
-			console.table(board.board);
-				break;
-			}
-			console.table(board.board);
-		//define who will play this turn in a var called nextPlayer
-		// check if board still has empty cell to play
-			// if not draw
-			// wait for nextPlayer move 
-			// change who is nextPlayer
-			if (nextPlayer == p1){
-				nextPlayer = p2;
-			}else{
-				nextPlayer = p1;
-			}
-		}
-		console.log(`${nextPlayer.playerName} won !`);
+		setNext(p1);
+	//	while (board.canPlay() ){
+	//	
+	//		if (playersTurn(nextPlayer)){
+	//		console.table(board.board);
+	//			break;
+	//		}
+	//		console.table(board.board);
+	//	//define who will play this turn in a var called nextPlayer
+	//	// check if board still has empty cell to play
+	//		// if not draw
+	//		// wait for nextPlayer move 
+	//		// change who is nextPlayer
+	//		if (nextPlayer == p1){
+	//			nextPlayer = p2;
+	//		}else{
+	//			nextPlayer = p1;
+	//		}
+	//	}
+	//	console.log(`${nextPlayer.playerName} won !`);
 	};
-	return {p1, p2, ft, board, setPlayers, setMode, playersTurn, startGame};
+	return {p1, p2, setMode, setNext, board, nextPlayer, setPlayers, setMode, playersTurn, startGame};
+
 })();
 
 

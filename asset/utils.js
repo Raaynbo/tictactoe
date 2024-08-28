@@ -21,6 +21,8 @@ const markers_list = [
 let marker_turn = 0;
 let pfp_index= 0;
 
+let x,y = 0;
+
 const pfp_selector_leftarrow = document.querySelectorAll(".leftarrow");
 const pfp_selector_rightarrow = document.querySelectorAll(".rightarrow");
 const marker_icons = document.querySelectorAll(".marker_icon");
@@ -114,9 +116,51 @@ function definePlayerMarker(e){
 
 }
 
-loadMarkerSelector();
+async function myPromiseGenerator() {
+  return new Promise((resolve, reject) => {
+	const cells = document.querySelectorAll(".cell");
+	cells.forEach((cell) => {
+		cell.addEventListener('click',function(e) {
+		/// do something to process the answer
+				x = e.target.id.split("-")[1];
+				y = e.target.id.split("-")[2];
+		resolve(x, y);
+		    }, {once: true});
+		})
+  });
+}
 
+function drawMarker(src, cellid){
+	let cell = document.querySelector(`#${cellid}`)
+	let img = document.createElement("img");
+	img.src = src;
+	img.style.width = "100%";
+	img.style.height = "100%";
+	cell.appendChild(img)
 
-// MAKE A NEW JS FILE CALLED MAIN IMPORT UTILS + GAME js IN IT
-// Move startGame function here, on call check if any field is empty, if not create player objects and a gamemode based on selection
-// check if game is playable, if not check async/await 
+}
+
+function createGrid(cellNb, gridDim, target, preview){
+	target.style.width , target.style.height = gridDim + "px";
+	cellDim = (gridDim/cellNb) + "px";
+	for ( let j = 0; j <= cellNb-1; ++j){
+		let row = document.createElement('div');
+		row.classList.add("board_row"); 
+		row.style.height = cellDim;
+		target.appendChild(row);
+		for (let i = 0; i <= cellNb-1; ++i){
+			let cell = document.createElement("div");
+			const baseTagId = "cell-";
+			cell.style.width = cellDim;
+			cell.style.height = cellDim;
+			cell.id = baseTagId + j + "-" + i;
+			cell.classList.add("cell");
+			row.appendChild(cell);
+			if (preview){
+			setEventOnCells(cell);
+			}
+		}
+	}
+}
+
+loadMarkerSelector()
