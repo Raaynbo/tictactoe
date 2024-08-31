@@ -183,8 +183,10 @@ body {
 }
 
 .board {
-	margin-top: 4%;
-	margin-left: 20%;
+	justify-content: center;
+	flex-direction: column;
+	height: 100%;
+	align-items: center;
 }
 
 .board_container {

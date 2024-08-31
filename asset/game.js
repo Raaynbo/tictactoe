@@ -5,6 +5,7 @@ const player = function (name, symbol, marker) {
 	const playerName = name;
 	let playerSymbol = symbol;
 	const playerMarker = marker;
+	const playerScore = 0;
 
 	const playerMoves = [];
 	const setSymbol = (newSymbol) => playerSymbol = newSymbol;
@@ -22,7 +23,7 @@ const player = function (name, symbol, marker) {
 		return [true, false];
 		};
 
-	return {playerName, playerSymbol,playerMarker,playerMoves, setSymbol, getSymbol, playTurn}
+	return {playerName, playerSymbol,playerMarker,playerScore, playerMoves, setSymbol, getSymbol, playTurn}
 };
 
 const gameboard = (function () {

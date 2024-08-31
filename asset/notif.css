@@ -1,0 +1,57 @@
+body {
+	overflow-x: hidden;
+}
+
+.toast {
+	position: absolute;
+	border: 1px solid teal;
+	border-radius: 2rem;
+	height: 150px;
+	margin: 8px;
+	background-color: rgba(255, 0255, 0255, 1);
+	border-top-right-radius: 0.2rem;
+	border-top-left-radius: 0.2rem;
+}
+
+.toast_title {
+	padding: 1rem;
+	background-color: rgba(0, 128, 128, 0.8);
+}
+
+.toast_content {
+	margin: 1rem;
+}
+
+.toast_notif {
+	animation-duration: 10s;
+	display: block;
+	animation-name: slidein;
+}
+
+@keyframes slidein {
+	0% {
+		opacity: 00%;
+		width: 01%;
+	}
+
+	15% {
+		opacity: 100%;
+		width: 98%;
+	}
+
+
+	85% {
+		opacity: 100%;
+		width: 98%;
+		margin-left: 8px;
+	}
+
+
+	100% {
+		opacity: 00%;
+		margin-left: 110%;
+		width: 98%;
+		display: none;
+
+	}
+}

@@ -28,6 +28,10 @@ const pfp_selector_rightarrow = document.querySelectorAll(".rightarrow");
 const marker_icons = document.querySelectorAll(".marker_icon");
 const ft_button = document.querySelectorAll(".ft_button");
 
+const toast = document.querySelector(".toast");
+const toast_title = document.querySelector(".toast_title");
+const toast_content = document.querySelector(".toast_content");
+
 const p1_name = document.querySelector("#p1name");
 const p2_name = document.querySelector("#p2name");
 
@@ -161,6 +165,17 @@ function createGrid(cellNb, gridDim, target, preview){
 			}
 		}
 	}
+}
+
+function showNotif(title, content){
+	toast_title.textContent = title;
+	toast_content.textContent = content;
+	toast.classList.add("toast_notif")
+
+	setTimeout(() => {
+		toast.classList.remove("toast_notif")
+		console.log("end")
+	}, 9900)
 }
 
 loadMarkerSelector()

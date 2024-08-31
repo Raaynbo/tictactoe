@@ -6,6 +6,8 @@ p2name = document.querySelector("#p2name");
 const boardui = document.querySelector(".board");
 const ngmenu = document.querySelector(".ng_menu");
 
+const p1_score = document.querySelector("#p1score");
+const p2_score = document.querySelector("#p2score");
 let nextPlayer;
 
 async function startGame() {
@@ -29,7 +31,7 @@ async function startGame() {
 	gameMode.setPlayers(player1, player2);
 	gameMode.setMode(ft_mode);
 	ngmenu.style.display = "none";
-	boardui.style.display = "block";
+	boardui.style.display = "flex";
 	let container = document.createElement('div');
 	container.classList.add("board_container"); 
 	boardui.appendChild(container);
@@ -59,6 +61,9 @@ async function startGame() {
 		}
 		if (isWinning){
 			console.log("we have a winner"); 
+			showNotif("END OF THE FIRST ROUND", `${nextPlayer.playerName} won the round!`);
+			nextPlayer.playerScore = parseInt(nextPlayer.playerScore) + 1;
+			nextPlayer == player1 ? p1score.textContent = player1.playerScore : p2score.textContent = player2.playerScore;
 		}
 		
 		
