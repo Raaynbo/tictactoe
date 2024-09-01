@@ -4,9 +4,8 @@ p2name = document.querySelector("#p2name");
 
 const boardui = document.querySelector(".board");
 const ngmenu = document.querySelector(".ng_menu");
+const ft_mode = document.querySelector(".ft_button.selected")
 
-const p1_score = document.querySelector("#p1score");
-const p2_score = document.querySelector("#p2score");
 let nextPlayer;
 
 let gridDim = 950;
@@ -17,7 +16,6 @@ async function startGame() {
 	
 	p1marker = document.querySelector("#p1marker");
 	p2marker = document.querySelector("#p2marker");
-	const ft_mode = document.querySelector(".ft_button.selected")
 	if (p1name.value ==="" || p2name.value === "" ){  
 		//trigger error notif
 		showNotif("Names are missing", "input a name for each player");
@@ -31,36 +29,32 @@ async function startGame() {
 	}
 	let player1 = player(p1name.value, "1", p1marker.src);
 	let player2 = player(p2name.value, "2", p2marker.src);
-	ngmenu.style.display = "none";
-	boardui.style.display = "flex";
-	let container = document.createElement('div');
-	container.classList.add("board_container"); 
-	boardui.appendChild(container);
+	let container = changeState(ngmenu, boardui);
 
 	createGrid(cellNb, gridDim, container, false);
 
 	
+	const p1_score = document.querySelector("#p1score");
+	p1_score.textContent = player1.playerName;
+	const p2_score = document.querySelector("#p2score");
+	p2_score.textContent = player2.playerName;
 
 	const game = gameOb(player1, player2, ft_mode);
 	let nextPlayer = player1;
 
 	let board = gameboard;
 	while (player1.playerScore < ft_mode.textContent && player2.playerScore < ft_mode.textContent ){
-		console.log("ft finished")
-		console.log(ft_mode.textContent)
-		console.log(player1.playerScore)
-		console.log(player1.playerScore<ft_mode.textContent)
 		if (!board.canPlay()){
 			console.log("draw")	
-			return false;
 		}
 		let isWinning = false;
 		while ( isWinning === false){
 			let isDone = false;
 			while (!isDone){
-				showNotif("CAN'T PLAY HERE", "A PLAYER ALREADY PLAYED HERE, PICK ANOTHER CELL");
 				await Promise.resolve(myPromiseGenerator());
 				[isDone, isWinning] = nextPlayer.playTurn(board, x, y);
+				isDone === false ? showNotif("CAN'T PLAY HERE", "A PLAYER ALREADY PLAYED HERE, PICK ANOTHER CELL", 5000): showNotif(`${nextPlayer.playerName} JUST PLAYED`, `${nextPlayer.playerName} played at ${x}, ${y}`, 5000);
+
 			}
 			let cellid = `cell-${x}-${y}`;
 			drawMarker(nextPlayer.playerMarker, cellid)
@@ -69,7 +63,7 @@ async function startGame() {
 				showNotif("END OF THE FIRST ROUND", `${nextPlayer.playerName} won the round!`);
 				nextPlayer.playerScore = parseInt(nextPlayer.playerScore) + 1;
 				game.addRoundData(player1, player2, board, nextPlayer)
-				nextPlayer == player1 ? p1score.textContent = player1.playerScore : p2score.textContent = player2.playerScore;
+				nextPlayer == player1 ? p1score.textContent = `${player1.playerName} : ${player1.playerScore}` : p2score.textContent = `${player2.playerName} : ${player2.playerScore}`;
 				board.resetBoard();
 				player1.resetMoves();
 				player2.resetMoves();
@@ -82,6 +76,7 @@ async function startGame() {
 		}
 		isWinning = false;
 	}
+	console.log("print rematch ui")
 }
 
 	

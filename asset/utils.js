@@ -169,14 +169,42 @@ function resetGrid(container){
 	
 }
 
-function showNotif(title, content){
+function showNotif(title, content, time=9900){
 	toast_title.textContent = title;
 	toast_content.textContent = content;
 	toast.classList.add("toast_notif")
 
 	setTimeout(() => {
 		toast.classList.remove("toast_notif")
-	}, 9900)
+	}, time)
+}
+
+function changeState(actual, newState){
+	actual.style.display = "none";
+	newState.style.display =  "flex";
+	if (newState === boardui){
+		while (boardui.firstChild){
+			boardui.removeChild(boardui.lastChild);
+		}
+		let scoreboard = document.createElement('div');
+		let p1_score = document.createElement('div');
+		let p2_score = document.createElement('div');
+		let container = document.createElement('div');
+		container.classList.add(".board_container");
+		scoreboard.classList.add(".scoreboard");
+		p1_score.id = "p1score";
+		p2_score.id = "p2score";
+		p1_score.textContent = "player1";
+		p2_score.textContent = "player2";
+		scoreboard.appendChild(p1_score);
+		scoreboard.appendChild(p2_score);
+		boardui.appendChild(scoreboard);
+
+		boardui.appendChild(container);
+		return container;
+	}
+	return true;
+
 }
 
 loadMarkerSelector()
