@@ -7,12 +7,20 @@ const player = function (name, symbol, marker) {
 	const playerMarker = marker;
 	const playerScore = 0;
 
-	const playerMoves = [];
+	let playerMoves = [];
+	const resetMoves = () => {
+			while (playerMoves.length > 0){
+			playerMoves.pop();
+		}
+	};
+	
 	const setSymbol = (newSymbol) => playerSymbol = newSymbol;
 	const getSymbol = () => playerSymbol;
 	const playTurn = (board, x,y) => {
 		if (!board.setBoard(x,y, playerSymbol)){
 			console.log("cant play here");
+			console.log(x)
+			console.log(y)
 			return [false, false];
 		}
 		console.log(`${playerName} played at ${x}, ${y}`);
@@ -23,8 +31,33 @@ const player = function (name, symbol, marker) {
 		return [true, false];
 		};
 
-	return {playerName, playerSymbol,playerMarker,playerScore, playerMoves, setSymbol, getSymbol, playTurn}
+	return {playerName, playerSymbol,playerMarker,playerScore, playerMoves, resetMoves, setSymbol, getSymbol, playTurn}
 };
+
+const gameHistory = function() {
+
+	const gameList = [];
+
+	const addGame = (game) => {
+		gameList.push(game);	
+	};
+	return {gameList, addGame}; 
+};
+
+const gameOb = function(player1, player2, ft) {
+	const p1 = player1;
+	const p2 = player2;
+	const ftmode = ft;
+	const round = [];
+
+	const addRoundData = (infoP1, infoP2, board, winner) => 
+	{
+		round.push([infoP1, infoP2, board, winner]);
+	};
+
+	return {p1, p2, ft, round, addRoundData}
+	// 0-0 0-1 0-2 0-3 
+}; 
 
 const gameboard = (function () {
 	const board = [["","",""],["","",""],["","",""]]; 
@@ -44,7 +77,11 @@ const gameboard = (function () {
 			board[x][y] = symbol;
 			return true;
 		};
-	const resetBoard = () => board.fill(["","",""]);
+	const resetBoard = () =>{
+		board.forEach((row) => {
+			row.fill("");
+		})
+	}; 
 
 	const isWinnerMove = (history) => {
 		// this function shouldnt be run until the moveHistory length is eqaul to 3 or higher 
@@ -100,70 +137,6 @@ const gameboard = (function () {
 	return {board, setBoard, resetBoard, wincase, isWinnerMove, canPlay};
 })();
 
-const gameMode = (function () {
-	let p1, p2 = "";
-	let nextPlayer = "";
-	let board = gameboard;
-	let ft = 1;
-	const setPlayers = (player1, player2) => {
-		p1 = player1;
-		p2 = player2;
-	};
-	
-	const setNext = (player) => nextPlayer = player;
-	const setMode = (mode) => {
-		ft = mode;
-	};
-
-	const playersTurn = (player) => {
-		//display input to select next pos xy
-		// store user input into a var called pos
-		//place marker on board
-		let isDone = false;
-		let isWinner = false;
-		while (!isDone){
-			const x = window.prompt(`${player.playerName}: x pos`);
-			const y = window.prompt(`${player.playerName}: y pos`);
-			const regexp = /[0-2]/;
-			if (x.match(regexp) !== null && y.match(regexp) !== null ){
-				[isDone, isWinner] = player.playTurn(board, x,y);
-			}else{
-				console.log("please play in the bound [0-1-2]");
-			}
-	
-		}
-		if (isWinner === true)
-			return true;
-		//check if wincond
-		//return result
-	};
-	
-	const startGame = async () => {
-		
-		setNext(p1);
-	//	while (board.canPlay() ){
-	//	
-	//		if (playersTurn(nextPlayer)){
-	//		console.table(board.board);
-	//			break;
-	//		}
-	//		console.table(board.board);
-	//	//define who will play this turn in a var called nextPlayer
-	//	// check if board still has empty cell to play
-	//		// if not draw
-	//		// wait for nextPlayer move 
-	//		// change who is nextPlayer
-	//		if (nextPlayer == p1){
-	//			nextPlayer = p2;
-	//		}else{
-	//			nextPlayer = p1;
-	//		}
-	//	}
-	//	console.log(`${nextPlayer.playerName} won !`);
-	};
-	return {p1, p2, setMode, setNext, board, nextPlayer, setPlayers, setMode, playersTurn, startGame};
-
-})();
 
 
 

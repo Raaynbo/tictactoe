@@ -46,10 +46,8 @@ ft_button.forEach((btn) => {
 			return false;
 		}
 		btn.classList.add("selected");
-		console.log(temp);
 		temp.classList.remove("selected");
 		selected_mode = e.target.textContent;
-		console.log(selected_mode);
 	})
 });
 
@@ -103,20 +101,15 @@ function definePlayerMarker(e){
 	let playerturn;
 	marker_turn == 0 ? playerturn ="p1marker": playerturn = "p2marker";
 	const prevMarker = document.querySelector(`#${playerturn}`) ;
-	console.log(playerturn);
 	if (prevMarker !== null){
 		prevMarker.id = "";
 		e.target.setAttribute("id",`${playerturn}`);
 		
-		console.log(e.target);
 		marker_turn == 1 ? marker_turn = 0 : marker_turn = 1;
 		return false;
 	}
-		console.log("player had no marker")
 	e.target.id = `${playerturn}`;
 		marker_turn == 1 ? marker_turn = 0 : marker_turn = 1;
-		console.log(e.target);
-	console.log(marker_turn)
 
 }
 
@@ -128,6 +121,7 @@ async function myPromiseGenerator() {
 		/// do something to process the answer
 				x = e.target.id.split("-")[1];
 				y = e.target.id.split("-")[2];
+				console.log(y);
 		resolve(x, y);
 		    }, {once: true});
 		})
@@ -167,6 +161,14 @@ function createGrid(cellNb, gridDim, target, preview){
 	}
 }
 
+function resetGrid(container){
+	while (container.firstChild ){
+		container.removeChild(container.lastChild);
+	}
+	createGrid(cellNb, gridDim, container, false)
+	
+}
+
 function showNotif(title, content){
 	toast_title.textContent = title;
 	toast_content.textContent = content;
@@ -174,7 +176,6 @@ function showNotif(title, content){
 
 	setTimeout(() => {
 		toast.classList.remove("toast_notif")
-		console.log("end")
 	}, 9900)
 }
 
