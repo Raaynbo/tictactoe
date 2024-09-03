@@ -12,6 +12,8 @@ body {
 	background-color: rgba(255, 0255, 0255, 1);
 	border-top-right-radius: 0.2rem;
 	border-top-left-radius: 0.2rem;
+	bottom: 2%;
+	right: 2%;
 }
 
 .toast_title {
@@ -93,26 +95,27 @@ body {
 @keyframes slidein {
 	0% {
 		opacity: 00%;
-		width: 01%;
+		width: 1%;
+		right: 2%;
+		bottom: 2%;
 	}
 
 	15% {
 		opacity: 100%;
-		width: 98%;
+		width: 15%;
 	}
 
 
 	85% {
 		opacity: 100%;
-		width: 98%;
-		margin-left: 8px;
+		right: 2%;
+		width: 15%;
 	}
 
 
 	100% {
 		opacity: 00%;
-		margin-left: 110%;
-		width: 98%;
+		right: -100%;
 		display: none;
 
 	}

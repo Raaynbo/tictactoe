@@ -36,11 +36,10 @@ async function startGame() {
 	createGrid(cellNb, gridDim, container, false);
 
 	
-//	const p1_score = document.querySelector("#p1score");
-//	p1_score.textContent = player1.playerName;
-//	const p2_score = document.querySelector("#p2score");
-//	p2_score.textContent = player2.playerName;
+	const p1_score = document.querySelector("#p1score");
+	const p2_score = document.querySelector("#p2score");
 
+	console.log(player1.playerScore)
 	const game = gameOb(player1, player2, ft_mode);
 	let nextPlayer = player1;
 	let winner = undefined;
@@ -58,6 +57,7 @@ async function startGame() {
 				isDone === false ? showNotif("CAN'T PLAY HERE", "A PLAYER ALREADY PLAYED HERE, PICK ANOTHER CELL", 5000): showNotif(`${nextPlayer.playerName} JUST PLAYED`, `${nextPlayer.playerName} played at ${x}, ${y}`, 5000);
 
 			}
+			showNotif("test", "test", 3000);
 			let cellid = `cell-${x}-${y}`;
 			drawMarker(nextPlayer.playerMarker, cellid)
 			if (isWinning){
@@ -70,7 +70,7 @@ async function startGame() {
 					winner = nextPlayer;
 				} 
 				game.addRoundData(player1, player2, board, nextPlayer)
-				 // nextPlayer == player1 ? p1score.textContent = `${player1.playerName} : ${player1.playerScore}` : p2score.textContent = `${player2.playerName} : ${player2.playerScore}`;
+				  nextPlayer == player1 ? p1score.textContent = ` ${player1.playerScore}` : p2score.textContent = ` ${player2.playerScore}`;
 				board.resetBoard();
 				player1.resetMoves();
 				player2.resetMoves();

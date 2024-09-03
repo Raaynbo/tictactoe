@@ -181,10 +181,12 @@ function resetGrid(container){
 function showNotif(title, content, time=9900){
 	toast_title.textContent = title;
 	toast_content.textContent = content;
-	toast.classList.add("toast_notif")
+	toast.classList.add("toast_notif");
+	toast.classList.remove("hidden");
 
 	setTimeout(() => {
 		toast.classList.remove("toast_notif")
+		toast.classList.add("hidden")
 	}, time)
 }
 
@@ -196,14 +198,10 @@ function changeState(actual, newState, player1, player2){
 			boardui.removeChild(boardui.lastChild);
 		}
 		let scoreboard = document.createElement('div');
-		let p1_score = document.createElement('div');
-		let p2_score = document.createElement('div');
 		let container = document.createElement('div');
 		container.classList.add("board_container");
 		scoreboard.classList.add("scoreboard");
 		createScoreboard(scoreboard, player1, player2);
-		scoreboard.appendChild(p1_score);
-		scoreboard.appendChild(p2_score);
 		boardui.appendChild(scoreboard);
 
 		boardui.appendChild(container);
@@ -221,11 +219,13 @@ function createScoreboard(container, player1, player2){
 	const separator = document.createElement('div');
 	p2_pfp.classList.add("player_card");
 	p1_pfp.classList.add("player_card");
-	p1_score.classList.add("pfp");
-	p2_score.classList.add("pfp");
 	separator.classList.add("scoreboard_sep");
-	p1_score.textContent = "score player 1";
-	p2_score.textContent = "score player 2";
+	p1_score.textContent = player1.playerScore;
+	p2_score.textContent = player2.playerScore;
+	p1_score.classList.add("pscore");
+	p1_score.id = "p1score";
+	p2_score.id = "p2score";
+	p2_score.classList.add("pscore");
 	createPlayerIcon(player1, p1_pfp);
 	createPlayerIcon(player2, p2_pfp);
 
