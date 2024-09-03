@@ -28,9 +28,7 @@ const pfp_selector_rightarrow = document.querySelectorAll(".rightarrow");
 const marker_icons = document.querySelectorAll(".marker_icon");
 const ft_button = document.querySelectorAll(".ft_button");
 
-const toast = document.querySelector(".toast");
-const toast_title = document.querySelector(".toast_title");
-const toast_content = document.querySelector(".toast_content");
+const container = document.querySelector(".toast_container");
 
 const p1_name = document.querySelector("#p1name");
 const p2_name = document.querySelector("#p2name");
@@ -176,17 +174,6 @@ function resetGrid(container){
 	
 }
 
-function showNotif(title, content, time=9900){
-	toast_title.textContent = title;
-	toast_content.textContent = content;
-	toast.classList.add("toast_notif");
-	toast.classList.remove("hidden");
-
-	setTimeout(() => {
-		toast.classList.remove("toast_notif")
-		toast.classList.add("hidden")
-	}, time)
-}
 
 function changeState(actual, newState, player1, player2){
 	actual.style.display = "none";
@@ -258,4 +245,40 @@ function populateModal(title, content){
 	
 }
 
+
+
+async function createNotif(title, content, time=9900 ){
+	const toast = document.createElement('div');
+	const toast_title = document.createElement('div');
+	const toast_content = document.createElement('div');
+	toast.classList.add("toast");
+	toast.classList.add("hidden");
+	toast_title.classList.add("toast_title");
+	toast_content.classList.add("toast_content");
+	toast_title.textContent = title;
+	toast_content.textContent = content;
+
+	toast.appendChild(toast_title);
+	toast.appendChild(toast_content);
+	container.appendChild(toast);
+	console.log("adadsasd")
+	await notifGenerator(toast, time);
+
+}
+
+
+async function notifGenerator(toast, time = 9900) {
+  return new Promise((resolve, reject) => {
+	toast.classList.add("toast_notif");
+	toast.classList.remove("hidden");
+	
+	resolve(setTimeout(() => {
+			console.log(toast);
+		toast.parentNode.removeChild(toast);
+		toast.classList.remove("toast_notif")
+		toast.classList.add("hidden")
+		console.log("end")
+	}, time))
+  });
+}
 loadMarkerSelector()

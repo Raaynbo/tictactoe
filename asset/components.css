@@ -4,31 +4,39 @@ body {
 
 /* ------------------------------------------------------------------- NOTIF TOAST ------------------------------------------------- */
 .toast {
-	position: absolute;
 	border: 1px solid teal;
 	border-radius: 2rem;
-	height: 150px;
+	height: 90px;
 	margin: 8px;
 	background-color: rgba(255, 0255, 0255, 1);
 	border-top-right-radius: 0.2rem;
 	border-top-left-radius: 0.2rem;
-	bottom: 2%;
-	right: 2%;
 }
 
 .toast_title {
-	padding: 1rem;
+	padding: 0.6rem;
 	background-color: rgba(0, 128, 128, 0.8);
 }
 
 .toast_content {
-	margin: 1rem;
+	margin: 0.6rem;
 }
 
 .toast_notif {
 	animation-duration: 10s;
 	display: block;
 	animation-name: slidein;
+}
+
+
+.toast_container {
+	position: absolute;
+	bottom: 2rem;
+	right: 2rem;
+	display: flex;
+	height: 30vh;
+	flex-direction: column-reverse;
+	width: 10%;
 }
 
 /* ------------------------------------------------------------------- MODAL ------------------------------------------------- */
@@ -95,27 +103,26 @@ body {
 @keyframes slidein {
 	0% {
 		opacity: 00%;
-		width: 1%;
-		right: 2%;
-		bottom: 2%;
+		width: 01%;
 	}
 
 	15% {
 		opacity: 100%;
-		width: 15%;
+		width: 98%;
 	}
 
 
 	85% {
 		opacity: 100%;
-		right: 2%;
-		width: 15%;
+		width: 98%;
+		margin-left: 8px;
 	}
 
 
 	100% {
 		opacity: 00%;
-		right: -100%;
+		margin-left: 110%;
+		width: 0%;
 		display: none;
 
 	}

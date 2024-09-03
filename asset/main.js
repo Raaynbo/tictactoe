@@ -20,13 +20,13 @@ async function startGame() {
 	const pfp_p2 = document.querySelector("#ng_player2_pfp_display")
 	if (p1name.value ==="" || p2name.value === "" ){  
 		//trigger error notif
-		showNotif("Names are missing", "input a name for each player");
+		createNotif("Names are missing", "input a name for each player");
 		return false;
 	}
 	//check if a merker is selected for each player 
 	//make a marker selection for each player in Utils 
 	if (p1marker === null || p1marker === "" || p2marker=== "" || p2marker === null ){
-		showNotif("Markers are missing", "Select a marker for each player");
+		createNotif("Markers are missing", "Select a marker for each player");
 		return false;
 	}
 	let player1 = player(p1name.value, "1", p1marker.src, pfp_p1.src);
@@ -54,13 +54,13 @@ async function startGame() {
 				if (x !== undefined || y !== undefined ){
 					[isDone, isWinning] = nextPlayer.playTurn(board, x, y);
 				}
-				isDone === false ? showNotif("CAN'T PLAY HERE", "A PLAYER ALREADY PLAYED HERE, PICK ANOTHER CELL", 5000): showNotif(`${nextPlayer.playerName} JUST PLAYED`, `${nextPlayer.playerName} played at ${x}, ${y}`, 5000);
+				isDone === false ? createNotif("CAN'T PLAY HERE", "A PLAYER ALREADY PLAYED HERE, PICK ANOTHER CELL", 5000): createNotif(`${nextPlayer.playerName} JUST PLAYED`, `${nextPlayer.playerName} played at ${x}, ${y}`, 5000);
 
 			}
 			let cellid = `cell-${x}-${y}`;
 			drawMarker(nextPlayer.playerMarker, cellid)
 			if (isWinning){
-				showNotif("END OF THE FIRST ROUND", `${nextPlayer.playerName} won the round!`);
+				createNotif("END OF THE FIRST ROUND", `${nextPlayer.playerName} won the round!`);
 				nextPlayer.playerScore = parseInt(nextPlayer.playerScore) + 1;
 				if (nextPlayer.playerScore == ft_mode.textContent){
 					winner = nextPlayer;
