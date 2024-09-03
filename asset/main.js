@@ -41,7 +41,7 @@ async function startGame() {
 
 	const game = gameOb(player1, player2, ft_mode);
 	let nextPlayer = player1;
-
+	let winner = undefined;
 	let board = gameboard;
 	while (player1.playerScore < ft_mode.textContent && player2.playerScore < ft_mode.textContent ){
 		if (!board.canPlay()){
@@ -62,11 +62,17 @@ async function startGame() {
 				console.log("we have a winner"); 
 				showNotif("END OF THE FIRST ROUND", `${nextPlayer.playerName} won the round!`);
 				nextPlayer.playerScore = parseInt(nextPlayer.playerScore) + 1;
+				console.log(nextPlayer.playerScore == ft_mode.textContent)
+				console
+				if (nextPlayer.playerScore == ft_mode.textContent){
+					winner = nextPlayer;
+				} 
 				game.addRoundData(player1, player2, board, nextPlayer)
 				nextPlayer == player1 ? p1score.textContent = `${player1.playerName} : ${player1.playerScore}` : p2score.textContent = `${player2.playerName} : ${player2.playerScore}`;
 				board.resetBoard();
 				player1.resetMoves();
 				player2.resetMoves();
+
 				resetGrid(container);
 			}
 			
@@ -76,6 +82,9 @@ async function startGame() {
 		}
 		isWinning = false;
 	}
+
+	interactModal();
+	populateModal(`${winner.playerName} won this game !`,`${winner.playerName} won this game !` )
 	console.log("print rematch ui")
 }
 
