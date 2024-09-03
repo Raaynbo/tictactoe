@@ -72,6 +72,9 @@ const gameboard = (function () {
 			["0,2", "1,1", "2,0"]];
 
 	const setBoard = (x,y,symbol) => {
+			console.log(x)
+			console.log(y)
+			console.table(board)
 			if (board[x][y] !== ""){
 			return false;
 			}

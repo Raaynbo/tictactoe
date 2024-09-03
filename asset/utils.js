@@ -1,4 +1,3 @@
-console.log("utils loaded");
 
 const pfp_list = ["pfp1.png",
 		"pfp2.png",
@@ -130,7 +129,6 @@ async function myPromiseGenerator() {
 		/// do something to process the answer
 				x = e.target.id.split("-")[1];
 				y = e.target.id.split("-")[2];
-				console.log(y);
 		resolve(x, y);
 		    }, {once: true});
 		})

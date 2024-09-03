@@ -37,35 +37,31 @@ async function startGame() {
 
 	
 	const p1_score = document.querySelector("#p1score");
+	p1_score.textContent = player1.playerName;
 	const p2_score = document.querySelector("#p2score");
+	p2_score.textContent = player2.playerName;
 
-	console.log(player1.playerScore)
 	const game = gameOb(player1, player2, ft_mode);
 	let nextPlayer = player1;
 	let winner = undefined;
 	let board = gameboard;
 	while (player1.playerScore < ft_mode.textContent && player2.playerScore < ft_mode.textContent ){
-		if (!board.canPlay()){
-			console.log("draw")	
-		}
 		let isWinning = false;
 		while ( isWinning === false){
 			let isDone = false;
 			while (!isDone){
 				await Promise.resolve(myPromiseGenerator());
-				[isDone, isWinning] = nextPlayer.playTurn(board, x, y);
+				if (x !== undefined || y !== undefined ){
+					[isDone, isWinning] = nextPlayer.playTurn(board, x, y);
+				}
 				isDone === false ? showNotif("CAN'T PLAY HERE", "A PLAYER ALREADY PLAYED HERE, PICK ANOTHER CELL", 5000): showNotif(`${nextPlayer.playerName} JUST PLAYED`, `${nextPlayer.playerName} played at ${x}, ${y}`, 5000);
 
 			}
-			showNotif("test", "test", 3000);
 			let cellid = `cell-${x}-${y}`;
 			drawMarker(nextPlayer.playerMarker, cellid)
 			if (isWinning){
-				console.log("we have a winner"); 
 				showNotif("END OF THE FIRST ROUND", `${nextPlayer.playerName} won the round!`);
 				nextPlayer.playerScore = parseInt(nextPlayer.playerScore) + 1;
-				console.log(nextPlayer.playerScore == ft_mode.textContent)
-				console
 				if (nextPlayer.playerScore == ft_mode.textContent){
 					winner = nextPlayer;
 				} 
@@ -79,7 +75,6 @@ async function startGame() {
 			}
 			
 			nextPlayer == player1 ? nextPlayer = player2 : nextPlayer = player1;
-			console.table(board.board)
 			
 		}
 		isWinning = false;
