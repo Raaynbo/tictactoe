@@ -137,6 +137,12 @@ body {
 
 }
 
+.ng_player_pfp_display {
+	height: 150px;
+	width: 150px;
+	border-radius: 4rem;
+	border: 1px solid black;
+}
 
 
 .leftarrow,
@@ -200,4 +206,24 @@ body {
 
 .board_row {
 	display: flex;
+}
+
+.scoreboard {
+	display: flex;
+	justify-content: space-evenly;
+	margin-left: 20%;
+	width: 100%;
+
+}
+
+.player_card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.player_card>span {
+	align-self: center;
+	font-weight: 700;
+	font-size: 2rem;
 }

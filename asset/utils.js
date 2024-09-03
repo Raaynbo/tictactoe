@@ -188,7 +188,7 @@ function showNotif(title, content, time=9900){
 	}, time)
 }
 
-function changeState(actual, newState){
+function changeState(actual, newState, player1, player2){
 	actual.style.display = "none";
 	newState.style.display =  "flex";
 	if (newState === boardui){
@@ -199,12 +199,9 @@ function changeState(actual, newState){
 		let p1_score = document.createElement('div');
 		let p2_score = document.createElement('div');
 		let container = document.createElement('div');
-		container.classList.add(".board_container");
-		scoreboard.classList.add(".scoreboard");
-		p1_score.id = "p1score";
-		p2_score.id = "p2score";
-		p1_score.textContent = "player1";
-		p2_score.textContent = "player2";
+		container.classList.add("board_container");
+		scoreboard.classList.add("scoreboard");
+		createScoreboard(scoreboard, player1, player2);
 		scoreboard.appendChild(p1_score);
 		scoreboard.appendChild(p2_score);
 		boardui.appendChild(scoreboard);
@@ -214,6 +211,41 @@ function changeState(actual, newState){
 	}
 	return true;
 
+}
+
+function createScoreboard(container, player1, player2){
+	const p1_pfp = document.createElement('div');
+	const p2_pfp = document.createElement('div');
+	const p1_score = document.createElement('div');
+	const p2_score = document.createElement('div');
+	const separator = document.createElement('div');
+	p2_pfp.classList.add("player_card");
+	p1_pfp.classList.add("player_card");
+	p1_score.classList.add("pfp");
+	p2_score.classList.add("pfp");
+	separator.classList.add("scoreboard_sep");
+	p1_score.textContent = "score player 1";
+	p2_score.textContent = "score player 2";
+	createPlayerIcon(player1, p1_pfp);
+	createPlayerIcon(player2, p2_pfp);
+
+	container.appendChild(p1_pfp);
+	container.appendChild(p1_score);
+	container.appendChild(separator);
+	container.appendChild(p2_score);
+	container.appendChild(p2_pfp);
+
+}
+
+function createPlayerIcon(player, container){
+	const pfp = document.createElement('img');
+	pfp.src = player.playerIcon;
+	pfp.classList.add("ng_player_pfp_display");
+	pfp.classList.add("icon");
+	const name = document.createElement('span');
+	name.textContent = player.playerName;
+	container.appendChild(name);
+	container.appendChild(pfp);
 }
 
 function interactModal(){

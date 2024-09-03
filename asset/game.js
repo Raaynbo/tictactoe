@@ -1,11 +1,12 @@
 console.log("tictactoe");
 
 
-const player = function (name, symbol, marker) {
+const player = function (name, symbol, marker, pfp) {
 	const playerName = name;
 	let playerSymbol = symbol;
 	const playerMarker = marker;
 	const playerScore = 0;
+	const playerIcon = pfp;
 
 	let playerMoves = [];
 	const resetMoves = () => {
@@ -31,7 +32,7 @@ const player = function (name, symbol, marker) {
 		return [true, false];
 		};
 
-	return {playerName, playerSymbol,playerMarker,playerScore, playerMoves, resetMoves, setSymbol, getSymbol, playTurn}
+	return {playerName, playerSymbol,playerMarker,playerIcon, playerScore, playerMoves, resetMoves, setSymbol, getSymbol, playTurn}
 };
 
 const gameHistory = function() {

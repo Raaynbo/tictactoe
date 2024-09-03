@@ -16,6 +16,8 @@ async function startGame() {
 	
 	p1marker = document.querySelector("#p1marker");
 	p2marker = document.querySelector("#p2marker");
+	const pfp_p1 = document.querySelector("#ng_player1_pfp_display")
+	const pfp_p2 = document.querySelector("#ng_player2_pfp_display")
 	if (p1name.value ==="" || p2name.value === "" ){  
 		//trigger error notif
 		showNotif("Names are missing", "input a name for each player");
@@ -27,17 +29,17 @@ async function startGame() {
 		showNotif("Markers are missing", "Select a marker for each player");
 		return false;
 	}
-	let player1 = player(p1name.value, "1", p1marker.src);
-	let player2 = player(p2name.value, "2", p2marker.src);
-	let container = changeState(ngmenu, boardui);
+	let player1 = player(p1name.value, "1", p1marker.src, pfp_p1.src);
+	let player2 = player(p2name.value, "2", p2marker.src, pfp_p2.src);
+	let container = changeState(ngmenu, boardui, player1, player2);
 
 	createGrid(cellNb, gridDim, container, false);
 
 	
-	const p1_score = document.querySelector("#p1score");
-	p1_score.textContent = player1.playerName;
-	const p2_score = document.querySelector("#p2score");
-	p2_score.textContent = player2.playerName;
+//	const p1_score = document.querySelector("#p1score");
+//	p1_score.textContent = player1.playerName;
+//	const p2_score = document.querySelector("#p2score");
+//	p2_score.textContent = player2.playerName;
 
 	const game = gameOb(player1, player2, ft_mode);
 	let nextPlayer = player1;
@@ -68,7 +70,7 @@ async function startGame() {
 					winner = nextPlayer;
 				} 
 				game.addRoundData(player1, player2, board, nextPlayer)
-				nextPlayer == player1 ? p1score.textContent = `${player1.playerName} : ${player1.playerScore}` : p2score.textContent = `${player2.playerName} : ${player2.playerScore}`;
+				 // nextPlayer == player1 ? p1score.textContent = `${player1.playerName} : ${player1.playerScore}` : p2score.textContent = `${player2.playerName} : ${player2.playerScore}`;
 				board.resetBoard();
 				player1.resetMoves();
 				player2.resetMoves();
