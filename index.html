@@ -5,8 +5,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="asset/style.css">
-	<link rel="stylesheet" href="asset/notif.css">
-	<script type="text/javascript" src="asset/game.js" defer></script>
+	<link rel="stylesheet" href="asset/components.css">
+	<script type=" text/javascript" src="asset/game.js" defer>
+	</script>
 	<script type="text/javascript" src="asset/main.js" defer></script>
 	<script type="text/javascript" src="asset/utils.js" defer></script>
 	<title>Document</title>
@@ -94,16 +95,28 @@
 				<div class="ng_start_game" onclick="startGame()">PLAY</div>
 			</div>
 		</div>
-		<div class="board" hidden>
+		<div class="board hidden">
 		</div>
 
 	</div>
-	<div class="toast" hidden>
+	<div class="toast hidden">
 		<div class="toast_title"> PLACEHOLDer for a possible notification</div>
 		<div class="toast_content">Explanation of what is going around and blablabla and this and way
 			more thing
 			but I can't just list them all</div>
 	</div>
+	<div class="modal hidden">
+		<button class="modal_close" onclick="interactModal()">&times;</button>
+		<div class="modal_title">TITLE HERE</div>
+		<div class="modal_content">
+			content HERE
+		</div>
+		<div class="modal_action">
+			<button>Action 1</button>
+			<button>Action 2</button>
+		</div>
+	</div>
+	<div class="overlay hidden" onclick="interactModal()"></div>
 </body>
 
 </html>

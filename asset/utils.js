@@ -23,6 +23,7 @@ let pfp_index= 0;
 
 let x,y = 0;
 
+const ng_btn = document.querySelector("#ng");
 const pfp_selector_leftarrow = document.querySelectorAll(".leftarrow");
 const pfp_selector_rightarrow = document.querySelectorAll(".rightarrow");
 const marker_icons = document.querySelectorAll(".marker_icon");
@@ -35,8 +36,15 @@ const toast_content = document.querySelector(".toast_content");
 const p1_name = document.querySelector("#p1name");
 const p2_name = document.querySelector("#p2name");
 
-//const p1marker = "";
-//const p2marker = "";
+// --------------------------------------------- Modal var
+const modal = document.querySelector(".modal");
+const modal_open_btn = document.querySelector(".modal_open");
+const overlay = document.querySelector(".overlay");
+const modal_title = document.querySelector(".modal_title");
+const modal_content = document.querySelector(".modal_content");
+
+
+
 let selected_mode = 1;
 
 ft_button.forEach((btn) => {
@@ -50,6 +58,7 @@ ft_button.forEach((btn) => {
 		selected_mode = e.target.textContent;
 	})
 });
+
 
 pfp_selector_leftarrow.forEach((arrow) => {
 	arrow.addEventListener("click", (e) => changePfp(e, "left"));
@@ -205,6 +214,18 @@ function changeState(actual, newState){
 	}
 	return true;
 
+}
+
+function interactModal(){
+	modal.classList.toggle("hidden");
+	modal.classList.toggle("modal_display");
+	overlay.classList.toggle("hidden");
+}
+
+function populateModal(title, content){
+	modal_title.textContent = title;
+	modal_content.textContent = content;
+	
 }
 
 loadMarkerSelector()
