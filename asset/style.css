@@ -6,9 +6,8 @@
 
 
 body {
-	display: grid;
 	height: 100vh;
-	grid-template-columns: 8% auto;
+	overflow: hidden;
 	/*grid-template-areas:
 	//	"sidebar main main main main"
 	//	"sidebar main main main main"
@@ -24,10 +23,6 @@ body {
 	background-color: white;
 }
 
-#sidebar {
-	background-color: grey;
-	height: 100%;
-}
 
 .menu_container {
 	width: 100%;
@@ -171,7 +166,7 @@ body {
 
 .ng_launch_game {
 	bottom: 0;
-	margin-top: 12%;
+	margin-top: 2%;
 }
 
 .ft_button {

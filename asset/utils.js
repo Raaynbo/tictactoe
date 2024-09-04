@@ -255,14 +255,13 @@ async function createNotif(title, content, time=9900 ){
 	toast.classList.add("hidden");
 	toast_title.classList.add("toast_title");
 	toast_content.classList.add("toast_content");
-	toast_title.textContent = title;
-	toast_content.textContent = content;
 
 	toast.appendChild(toast_title);
 	toast.appendChild(toast_content);
 	container.appendChild(toast);
-	console.log("adadsasd")
 	await notifGenerator(toast, time);
+	toast_title.textContent = title;
+	toast_content.textContent = content;
 
 }
 
@@ -273,11 +272,9 @@ async function notifGenerator(toast, time = 9900) {
 	toast.classList.remove("hidden");
 	
 	resolve(setTimeout(() => {
-			console.log(toast);
 		toast.parentNode.removeChild(toast);
 		toast.classList.remove("toast_notif")
 		toast.classList.add("hidden")
-		console.log("end")
 	}, time))
   });
 }

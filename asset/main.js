@@ -60,13 +60,15 @@ async function startGame() {
 			let cellid = `cell-${x}-${y}`;
 			drawMarker(nextPlayer.playerMarker, cellid)
 			if (isWinning){
-				createNotif("END OF THE FIRST ROUND", `${nextPlayer.playerName} won the round!`);
 				nextPlayer.playerScore = parseInt(nextPlayer.playerScore) + 1;
+				if (nextPlayer.playerScore != ft_mode.textContent){
+					createNotif("END OF THE ROUND", `${nextPlayer.playerName} won the round!`);
+				  nextPlayer == player1 ? p1score.textContent = ` ${player1.playerScore}` : p2score.textContent = ` ${player2.playerScore}`;
+				}
 				if (nextPlayer.playerScore == ft_mode.textContent){
 					winner = nextPlayer;
 				} 
 				game.addRoundData(player1, player2, board, nextPlayer)
-				  nextPlayer == player1 ? p1score.textContent = ` ${player1.playerScore}` : p2score.textContent = ` ${player2.playerScore}`;
 				board.resetBoard();
 				player1.resetMoves();
 				player2.resetMoves();
@@ -80,9 +82,11 @@ async function startGame() {
 		isWinning = false;
 	}
 
+	ghistory.addGame(game);
+	console.log(ghistory);
 	interactModal();
 	populateModal(`${winner.playerName} won this game !`,`${winner.playerName} won this game !` )
-	console.log("print rematch ui")
+
 }
 
 	

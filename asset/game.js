@@ -140,16 +140,3 @@ const gameboard = (function () {
 
 	return {board, setBoard, resetBoard, wincase, isWinnerMove, canPlay};
 })();
-
-
-
-
-//gameMode.startGame();
-
-//player1.playTurn(gameboard, 0, 1);
-
-
-
-
-
-
