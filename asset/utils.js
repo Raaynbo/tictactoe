@@ -1,4 +1,3 @@
-
 const pfp_list = ["pfp1.png",
 		"pfp2.png",
 		"pfp3.png"];
@@ -22,13 +21,16 @@ let pfp_index= 0;
 
 let x,y = 0;
 
+const rematch_btn = document.querySelector("#rematch_btn");
+const main_menu_btn = document.querySelector("#main_menu_btn");
+
 const ng_btn = document.querySelector("#ng");
 const pfp_selector_leftarrow = document.querySelectorAll(".leftarrow");
 const pfp_selector_rightarrow = document.querySelectorAll(".rightarrow");
 const marker_icons = document.querySelectorAll(".marker_icon");
 const ft_button = document.querySelectorAll(".ft_button");
 
-const container = document.querySelector(".toast_container");
+const toast_container = document.querySelector(".toast_container");
 
 const p1_name = document.querySelector("#p1name");
 const p2_name = document.querySelector("#p2name");
@@ -40,6 +42,8 @@ const overlay = document.querySelector(".overlay");
 const modal_title = document.querySelector(".modal_title");
 const modal_content = document.querySelector(".modal_content");
 
+
+let notifWidth = window.screen.width - window.screen.width*0.9;
 
 let selected_mode = 1;
 
@@ -53,6 +57,19 @@ ft_button.forEach((btn) => {
 		temp.classList.remove("selected");
 		selected_mode = e.target.textContent;
 	})
+});
+
+rematch_btn.addEventListener("click", (e) => {
+	interactModal();
+	console.log(ghistory.gameList[ghistory.gameList.length-1]);
+	console.log("history length" + ghistory.gameList.length);
+	startGame();
+});
+
+
+main_menu_btn.addEventListener("click", (e) => {
+	interactModal();
+	changeState(boardui, ngmenu);
 });
 
 
@@ -70,7 +87,7 @@ function getFilename(trgt){
 function changePfp(e, direction){
 	direction === "left" ? trgt = e.target.nextElementSibling : trgt = e.target.previousElementSibling;
 	const filename = getFilename(trgt); 
-	index = pfp_list.findIndex((pfp) => pfp === filename)
+	index = pfp_list.findIndex((pfp) => pfp === filename);
 	switch (direction){
 		case "left":
 			index -= 1;
@@ -123,9 +140,8 @@ async function myPromiseGenerator() {
 	const cells = document.querySelectorAll(".cell");
 	cells.forEach((cell) => {
 		cell.addEventListener('click',function(e) {
-		/// do something to process the answer
-				x = e.target.id.split("-")[1];
-				y = e.target.id.split("-")[2];
+			x = e.target.id.split("-")[1];
+			y = e.target.id.split("-")[2];
 		resolve(x, y);
 		    }, {once: true});
 		})
@@ -138,7 +154,7 @@ function drawMarker(src, cellid){
 	img.src = src;
 	img.style.width = "100%";
 	img.style.height = "100%";
-	cell.appendChild(img)
+	cell.appendChild(img);
 
 }
 
@@ -158,9 +174,6 @@ function createGrid(cellNb, gridDim, target, preview){
 			cell.id = baseTagId + j + "-" + i;
 			cell.classList.add("cell");
 			row.appendChild(cell);
-			if (preview){
-			setEventOnCells(cell);
-			}
 		}
 	}
 }
@@ -169,12 +182,13 @@ function resetGrid(container){
 	while (container.firstChild ){
 		container.removeChild(container.lastChild);
 	}
-	createGrid(cellNb, gridDim, container, false)
+	console.log()
+	createGrid(cellNb, gridDim, container, false);
 	
 }
 
 
-function changeState(actual, newState, player1, player2){
+function changeState(actual, newState, player1=undefined, player2=undefined){
 	actual.style.display = "none";
 	newState.style.display =  "flex";
 	if (newState === boardui){
@@ -257,8 +271,8 @@ async function createNotif(title, content, time=9900 ){
 
 	toast.appendChild(toast_title);
 	toast.appendChild(toast_content);
-	container.style.width = notifWidth + "px";
-	container.appendChild(toast);
+	toast_container.style.width = notifWidth + "px";
+	toast_container.appendChild(toast);
 	await notifGenerator(toast, time);
 	toast_title.textContent = title;
 	toast_content.textContent = content;

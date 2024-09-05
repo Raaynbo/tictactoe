@@ -19,12 +19,8 @@ const player = function (name, symbol, marker, pfp) {
 	const getSymbol = () => playerSymbol;
 	const playTurn = (board, x,y) => {
 		if (!board.setBoard(x,y, playerSymbol)){
-			console.log("cant play here");
-			console.log(x)
-			console.log(y)
 			return [false, false];
 		}
-		console.log(`${playerName} played at ${x}, ${y}`);
 		playerMoves.push(`${x},${y}`) ;
 		if (playerMoves.length >= 3){
 			return [true , board.isWinnerMove(playerMoves)];
@@ -72,9 +68,6 @@ const gameboard = (function () {
 			["0,2", "1,1", "2,0"]];
 
 	const setBoard = (x,y,symbol) => {
-			console.log(x)
-			console.log(y)
-			console.table(board)
 			if (board[x][y] !== ""){
 			return false;
 			}
@@ -115,8 +108,6 @@ const gameboard = (function () {
 					}
 				});
 				if (playerWinningState === 2){
-					console.log("we have a winner here");
-					console.log(pWinCond)
 					return true;
 				}
 				if (j === history[j].length-1){
