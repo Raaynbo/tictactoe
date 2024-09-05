@@ -8,7 +8,9 @@ const ft_mode = document.querySelector(".ft_button.selected")
 
 let nextPlayer;
 
-let gridDim = 950;
+let gridDim = window.screen.height - window.screen.height*0.4;
+let notifWidth = window.screen.width - window.screen.width*0.7;
+console.log(notifWidth)
 let cellNb = 3;
 const ghistory =gameHistory();
 
@@ -37,9 +39,7 @@ async function startGame() {
 
 	
 	const p1_score = document.querySelector("#p1score");
-	p1_score.textContent = player1.playerName;
 	const p2_score = document.querySelector("#p2score");
-	p2_score.textContent = player2.playerName;
 
 	const game = gameOb(player1, player2, ft_mode);
 	let nextPlayer = player1;
@@ -83,7 +83,6 @@ async function startGame() {
 	}
 
 	ghistory.addGame(game);
-	console.log(ghistory);
 	interactModal();
 	populateModal(`${winner.playerName} won this game !`,`${winner.playerName} won this game !` )
 

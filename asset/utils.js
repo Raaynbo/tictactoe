@@ -41,7 +41,6 @@ const modal_title = document.querySelector(".modal_title");
 const modal_content = document.querySelector(".modal_content");
 
 
-
 let selected_mode = 1;
 
 ft_button.forEach((btn) => {
@@ -258,6 +257,7 @@ async function createNotif(title, content, time=9900 ){
 
 	toast.appendChild(toast_title);
 	toast.appendChild(toast_content);
+	container.style.width = notifWidth + "px";
 	container.appendChild(toast);
 	await notifGenerator(toast, time);
 	toast_title.textContent = title;
