@@ -99,8 +99,8 @@ body {
 	min-width: 400px;
 	max-width: 1200px;
 	height: 100%;
-	border: 5px solid red;
-	background-color: red;
+	border: 5px solid lightgrey;
+	border-radius: 5rem;
 }
 
 .marker_selector_inside {
@@ -118,7 +118,7 @@ body {
 }
 
 .marker_icon {
-	height: fit-content;
+	text-align: center;
 }
 
 #ng_player1_pfp_display,
